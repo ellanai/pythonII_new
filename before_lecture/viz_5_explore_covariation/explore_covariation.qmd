@@ -294,6 +294,38 @@ We are now going to transition from making plots to teach **ourselves** to makin
 
 Are penguins getting heavier (`body_mass_g`) over time? 
 
+```{python}
+penguins_bm = penguins.groupby("year")["body_mass_g"].mean()
+
+penguins_bm_df = penguins_bm.reset_index()
+
+alt.Chart(penguins_bm_df).mark_bar().encode(
+    x=alt.X('year:O', title="Year"), 
+    y=alt.Y('body_mass_g:Q', title="Body Mass (g)", scale=alt.Scale(zero=False)),
+).properties(
+    width=400,
+    height=300
+)
+
+
+alt.Chart(penguins).mark_bar().encode(
+    alt.Y('average(body_mass_g)')
+)
+```
+
+
+```{python}
+lt.Chart(penguins).mark_bar
+
+
+alt.Chart(penguins).mark_boxplot().encode(
+    x=alt.X('species:N', title="Species"), 
+    y=alt.Y('body_mass_g:Q', title="Body Mass (g)"),
+).properties(
+    width=400,
+    height=300
+)
+```
 Bonus: what is the headline of your plot and what are the sub-messages?
 
 ## Meta comment: iterating on plot design
