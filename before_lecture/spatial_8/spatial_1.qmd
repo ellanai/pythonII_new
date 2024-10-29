@@ -269,11 +269,13 @@ poly.area
 ```{python}
 print("Polygon Bounding Box: ", poly.bounds)
 poly.bounds
+# prints x line, x line, y line, y line (although exact order is not certain -- google it)
 ```
 
 ```{python}
 print("Polygon Exterior: ", poly.exterior)
 poly.exterior
+# this is how to measure the perimeter -- extract exterior then apply length method (see below)
 ```
 
 `LinearRing` is similar to a `LineString`, but it it must be:
@@ -299,6 +301,7 @@ poly_without_hole
 ```{python}
 linestring_from_exterior = LineString(exterior)
 linestring_from_exterior
+# defined line string to connect four points but not connecting the fourth to the first
 ```
 
 ## `Polygon`: example II with a hole
@@ -315,8 +318,33 @@ poly_with_hole
 ## Do-pair-Share
 
 1.  Create a triangle
+
+```{python}
+dps_point1 = Point(2,4)
+dps_point2 = Point(3,7)
+dps_point3 = Point(4,3)
+dps_poly = Polygon([dps_point1, dps_point2, dps_point3])
+dps_poly
+```
+
 2.  Create a square
+
+```{python}
+dps_point1 = Point(2,4)
+dps_point2 = Point(2,6)
+dps_point3 = Point(4,4)
+dps_point4 = Point(4,6)
+dps_poly = Polygon([dps_point1, dps_point2, dps_point4, dps_point3])
+dps_poly
+
+```
+
 3.  Create a circle (hint: look up the `buffer` method in `shapely`)
+
+```{python}
+dps_circle = dps_point1.buffer(3)
+dps_circle
+```
 
 
 ## geo data in vectors: summary
